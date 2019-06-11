@@ -1,7 +1,7 @@
 # sf-logger #
 
 sf-logger is a tool for logging and debugging Apex classes. 
-Easy to use, sf-logger is avaible in two different instances: DebugLogger (writes logs to Debug Logs of your salesforce org) and ApexObjectLogger (writes logs into fields of custom SObject). 
+Easy to use, sf-logger is avaible in two different instances: *DebugLogger* (writes logs to Debug Logs of your salesforce org) and *ApexObjectLogger* (writes logs into fields of custom SObject). 
 
 Swap logger instances and log levels at any time without need to change your code. Options are based on metadata configuration.
 Receive notifications by email.
@@ -37,6 +37,41 @@ Example:
 ...
 
 ```
+
+# Error Handling Configurations
+You can setup Error Handling Configurations in your org in Custom Metadata Types section.
+
+Examples: 
+
+### Production
+	Label: Production
+	Error Handling Configuration Name: Production
+	Log Level: Info - Info, Error
+	Logger: Object Logger
+	Email on Error: checked
+	Email Address: user@example.com
+	
+Corresponded file - Error_Handling_Configuration.Production.md-meta.xml
+
+### Sandbox
+	Label: Sandbox
+	Error Handling Configuration Name: Sandbox
+	Log Level: Finest - Debug, Info, Warning, Error
+	Logger: No Logs
+	Email on Error: unchecked
+	Email Address: user@example.com
+	
+Corresponded file - Error_Handling_Configuration.Sandbox.md-meta.xml
+
+### Test
+	Label: Test
+	Error Handling Configuration Name: Test
+	Log Level: Fine - Info, Warning, Error
+	Logger: No Logs
+	Email on Error: checked
+	Email Address: user@example.com
+	
+Corresponded file - Error_Handling_Configuration.Test.md-meta.xml
 
 # Classes
 
@@ -89,7 +124,7 @@ Sends email notifications to addresses selected in metadata configuration.
 
 Class for creation instances of loggers.
 
-### Methods ###
+___Methods___
 
 ```java
 public static ILogger getInstance()
