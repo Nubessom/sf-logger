@@ -1,2 +1,0 @@
-# sf-logger
-Salesforce logger
