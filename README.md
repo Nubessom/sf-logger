@@ -7,6 +7,7 @@ Apex Wrapper Salesforce Metadata API
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/src/main/webapp/resources/img/deploy.png">
 </a>
+
 1. Use case
 
 2. Installation
