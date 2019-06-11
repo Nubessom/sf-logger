@@ -1,6 +1,5 @@
 # sf-logger
 Salesforce logger
-Apex Wrapper Salesforce Metadata API
 ====================================
  
 <a href="https://githubsfdeploy.herokuapp.com">
