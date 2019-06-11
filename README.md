@@ -1,6 +1,4 @@
 # sf-logger #
-Salesforce logger
-
 
 sf-logger is a tool for logging and debugging Apex classes. 
 Easy to use, sf-logger is avaible in two different instances: DebugLogger (writes logs to Debug Logs of your salesforce org) and ApexObjectLogger (writes logs into fields of custom SObject). 
@@ -25,7 +23,7 @@ Get logger instance in the beginning of your class using LoggerFactory.cls, like
    private ILogger log = LoggerFactory.getInstance(); 
 ```
 
-Add logger's method calls where you need it in code, using corresponding log type and use parameters, based on what info you need to log. See ILogger.cls for parameters reference.
+Add logger's method calls where you need it in code using corresponding log type and use parameters based on what info you need to log. See ILogger.cls for parameters reference.
 
 Example:
 
@@ -185,7 +183,7 @@ __Message__c__
 
 __ProfileId__c__
 
-    Type: 	Text(255)
+    Type: Text(255)
     
     Id of profile of the current user
 
