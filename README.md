@@ -1,170 +1,220 @@
-# sf-logger
+# sf-logger #
 Salesforce logger
-====================================
- 
+
+
+sf-logger is a tool for logging and debugging Apex classes. 
+Easy to use, sf-logger is avaible in two different instances: DebugLogger (writes logs to Debug Logs of your salesforce org) and ApexObjectLogger (writes logs into fields of custom SObject). 
+
+Swap logger instances and log levels at any time without need to change your code. Options are based on metadata configuration.
+Receive notifications by email.
+
+
+
+# Installation
+
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/src/main/webapp/resources/img/deploy.png">
 </a>
 
-1. Use case
+# How to use
 
-2. Installation
+Get logger instance in the beginning of your class using LoggerFactory.cls, like that
 
-3. Project structure
-	3.1. Structure
-	3.2 Content
-		3.2.1. Classes
-		3.2.2. Objects	
+```java
+   private ILogger log = LoggerFactory.getInstance(); 
+```
 
+Add logger's method calls where you need it in code, using corresponding log type and use parameters, based on what info you need to log. See ILogger.cls for parameters reference.
 
+Example:
 
-1. Use case
+```java
+    
+...
+} catch (Exception e) {
+    log.error(e, "Finding students by group id has failed");
+    throw new CustomException(e, "Finding students by group id has failed");
+}
+...
 
-	sf-logger is a tool for logging and debugging Apex classes. 
-	Easy to use, sf-logger is avaible in two different instances: DebugLogger (writes logs to Debug Logs of your salesforce org) and ApexObjectLogger (writes logs into fields of custom SObject). 
+```
 
-	Swap logger instances and log levels at any time without need to change your code. Options are based on metadata configuration.
-	Receive notifications by email.
+# Classes
 
+### ApexObjectLogger.cls ###
 
+Logger that writes logs into Error_Logs__c custom SObject. Before inserting newly created Error_Logs__c, checks whether the current user has permissions to write to fields of Error_Logs__c.
+***
 
-2. Installation
---
+### DebugLogger.cls ###
 
+Logger that writes logs into Debug Logs in the org. 
+***
 
-3. Project structure
+### ILogger.cls ###
 
-3.1 Structure
---
+Interface on which all logger instances are based.
 
+___Methods___
 
+Each logger contains four types of methods, based on log type: debug, info, warning and error. 
+Each method reloaded eight times, based on parameters that need to be logged.
 
-3.2 Content
+For example:
 
-	3.2.1 Classes
+```java
+void debug(Exception ex, String source, Id referenceId, String referenceInfo, String msg);
+void debug(Exception ex, String source, String msg);
+void debug(Exception ex, Id ReferenceId, String ReferenceInfo, String msg);
+void debug(Exception ex, String msg);
 
-	ApexObjectLogger.cls
+void debug(String source, Id referenceId, String referenceInfo, String msg);
+void debug(String source, String msg);
+void debug(Id ReferenceId, String ReferenceInfo, String msg);
+void debug(String msg);
+```
+***
+### Logger.cls ###
 
-		Logger that writes logs into Error_Logs__c custom SObject. Before inserting newly created Error_Logs__c, checks whether the current user has permissions to write to fields of Error_Logs__c.
+Abstract class which all logger instances extend.
 
+___Methods___
 
-	DebugLogger.cls
-
-		Logger that writes logs into Debug Logs in the org. 
-
-
-	ILogger.cls
-
-		Interface on which all logger instances are based.
-
-		Methods 
-			Each logger contains 4 types of methods based on log type (debug, info, warning and error) and each method reloaded 8 times, based on number of parameters. 
-
-			For example:
-
-			    void debug(Exception ex, String source, Id referenceId, String referenceInfo, String msg);
-			    void debug(Exception ex, String source, String msg);
-			    void debug(Exception ex, Id ReferenceId, String ReferenceInfo, String msg);
-			    void debug(Exception ex, String msg);
-			    
-			    void debug(String source, Id referenceId, String referenceInfo, String msg);
-			    void debug(String source, String msg);
-			    void debug(Id ReferenceId, String ReferenceInfo, String msg);
-			    void debug(String msg);
-
-	Logger.cls
-
-		Abstract class with generic constructor and sendMail() method.
-
-		Methods
-
-			public void sendEmail()
-
-			Sends email notifications to addresses selected in metadata configuration.
+```java
+public void sendEmail()
+```
+Sends email notifications to addresses selected in metadata configuration.
 
 	
-	LoggerFactory.cls
+### LoggerFactory.cls ###
 
-		Class for creation instances of loggers.
+Class for creation instances of loggers.
 
-		Methods
+### Methods ###
 
-			public static ILogger getInstance()
+```java
+public static ILogger getInstance()
+```
+Returns new instance of logger based on metadata configuration. 
+***
 
-			Returns new instance of logger based on metadata configuration. 
+### NoLogLogger.cls ###
 
+Logger that makes no logs. Used to disable logging.
+***
 
-	NoLogLogger.cls
+# Objects ##
 
-		Logger that makes no logs. Used to disable logging.
+### Error_Handling_Configuration__mdt ###
 
-
-
-	3.2.2 Objects
-
-		Error_Handling_Configuration__mdt
-
-			Custom metadata that contains logger configuration. 
-
-			
-			Fields
-
-				Email_Address__c
-
-					Type: email
-
-					Contains email address where to send notifications.
+Custom metadata that contains logger configuration. 
 
 
-				Email_on_Error__c
+### Fields: 
 
-					Type: checkbox
+__Email_Address__c__
 
-					Defines whether to send notification by email.
+    Type: email
 
-
-				Log_Level__c
-
-					Type: picklist
-
-					Defines which log levels will be used: Info, Fine or Finest
-
-						Log levels
-
-							Info - only Info and Error log-types will be used.
-							Fine - Info, Warning and Error log-types will be used.
-							Finest - all log-types: Debug, Info, Warning, Error will be used.
-
-						Log types
-
-							Debug - information that can be helpful while debugging (which method is running, variables values, etc).
-							Info - Generally useful information to log (service run/stop, configuration supposals, etc).
-							Warning - Any places in code that can potentially cause application malfunction.
-							Error - Critical events that requires developers attention.
-
-				Logger__c
-
-					Type: picklist
-
-					Defines which logger to use.
+    Contains email address where to send notifications.
 
 
-		Error_Logs__c
+__Email_on_Error__c__
 
-			Object that contains log information.
+    Type: checkbox
 
-				Fields:
-					Exception_Stack_Trace__c,
-					Exception_Type__c,
-					Log_Type__c,
-					Message__c,
-					ProfileId__c,
-				 	Reference_Id__c,
-			 	 	Reference_Info__c,
-			 	 	RoleId__c,
-			 	 	Source__c,
-			 	 	Username__c
+    Defines whether to send notification by email.
+
+
+__Log_Level__c__
+
+    Type: picklist
+
+    Defines which log levels will be used: Info, Fine or Finest
+
+Log Levels
+
+    Info - only Info and Error log-types will be used.
+    Fine - Info, Warning and Error log-types will be used.
+    Finest - all log-types: Debug, Info, Warning, Error will be used.
+
+
+Log Types
+
+    Debug - information that can be helpful while debugging (which method is running, variables values, etc).
+    Info - Generally useful information to log (service run/stop, configuration supposals, etc).
+    Warning - Any places in code that can potentially cause application malfunction.
+    Error - Critical events that requires developers attention.
+    
+__Logger__c__
+
+    Type: picklist
+
+    Defines which logger to use.
+***
+
+### Error_Logs__c
+
+Object that contains log information.
+
+ ### Fields:
+
+__Exception_Stack_Trace__c__
+    
+    Type: Long Text Area(32768)
+    
+    Stack trace of the exception
+
+__Exception_Type__c__
+    
+    Type: Text(255)
+    
+    Type of the exception
+
+__Log_Type__c__
+    
+    Type: Picklist
+    Debug, Info, Warning or Error
+
+__Message__c__
+
+    Type: Long Text Area(32768)
+    
+    Custom message
+
+__ProfileId__c__
+
+    Type: 	Text(255)
+    
+    Id of profile of the current user
+
+__Reference_Id__c__
+
+    Type: Text(18)
+    
+
+__Reference_Info__c__
+
+    Type: Text(255)
+
+__RoleId__c__
+
+    Type: Text(255)
+
+    Id of the current user's role.
+
+__Source__c__
+
+    Type: Text(255)
+    
+    Source
+
+__Username__c__
+    
+    Type: Text(255)
+    
+    Current user's name
 
 
 
