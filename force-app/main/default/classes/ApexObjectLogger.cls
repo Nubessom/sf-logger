@@ -24,9 +24,6 @@ global with sharing class ApexObjectLogger extends Logger {
         }
         
         SecurityEnforcer.createSObject(errorLogsObj);
-        if (isSendEmail) {
-            sendEmail();
-        }    
     }
 
     public void debug(Exception ex, Id referenceId, String referenceInfo, String msg){
@@ -73,9 +70,6 @@ global with sharing class ApexObjectLogger extends Logger {
         }
         
         SecurityEnforcer.createSObject(errorLogsObj);
-        if (isSendEmail) {
-            sendEmail();
-        }    
     }
 
     public void info(Exception ex, Id referenceId, String referenceInfo, String msg){
@@ -126,9 +120,6 @@ global with sharing class ApexObjectLogger extends Logger {
         }
         
         SecurityEnforcer.createSObject(errorLogsObj);
-        if (isSendEmail) {
-            sendEmail();
-        }    
     }
 
     public void warning(Exception ex, Id referenceId, String referenceInfo, String msg){
@@ -160,7 +151,7 @@ global with sharing class ApexObjectLogger extends Logger {
         
         SecurityEnforcer.createSObject(errorLogsObj);
         if (isSendEmail) {
-            sendEmail();
+            sendEmail(ex, source, referenceId, referenceInfo, msg);
         }    
     }
     

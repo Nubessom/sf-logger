@@ -13,10 +13,6 @@ global with sharing class DebugLogger extends Logger {
         printLogType('DEBUG');
         printLog(ex, source, referenceId, referenceInfo, msg);
         printLogType('DEBUG');
-        
-        if (isSendEmail) {
-            sendEmail();    
-        }
     }
 
     public void debug(Exception ex, Id referenceId, String referenceInfo, String msg){
@@ -51,10 +47,6 @@ global with sharing class DebugLogger extends Logger {
         printLogType('INFO');
         printLog(ex, source, referenceId, referenceInfo, msg);
         printLogType('INFO');
-        
-        if (isSendEmail) {
-            sendEmail();    
-        }
     }
 
     public void info(Exception ex, Id ReferenceId, String ReferenceInfo, String msg){
@@ -93,10 +85,6 @@ global with sharing class DebugLogger extends Logger {
         printLogType('WARNING');
         printLog(ex, source, referenceId, referenceInfo, msg);
         printLogType('WARNING');
-        
-        if (isSendEmail) {
-            sendEmail();    
-        }
     }
 
     public void warning(Exception ex, Id referenceId, String referenceInfo, String msg){
@@ -117,7 +105,7 @@ global with sharing class DebugLogger extends Logger {
         printLogType('ERROR');
         
         if (isSendEmail) {
-            sendEmail();    
+            sendEmail(ex, source, referenceId, referenceInfo, msg);
         }
     }
     
