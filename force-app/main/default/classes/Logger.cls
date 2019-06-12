@@ -19,28 +19,25 @@ public abstract class Logger implements ILogger {
 
         String subject =  'OrgName: ' + UserInfo.getOrganizationName() + ' OrgId: ' + UserInfo.getOrganizationId() + ' at ' + Datetime.now().format();
 
-        String message = 'Username = '+ UserInfo.getUserName() + '\n' +
-                            'RoleId = '+ UserInfo.getUserRoleId() + '\n' +
-                            'ProfileId = '+ UserInfo.getProfileId() + '\n' +
-                            'Message = ' + msg + '\n';        
+        String textBody = 'Username = ' + UserInfo.getUserName() + '\n' +
+                          'RoleId = ' + UserInfo.getUserRoleId() + '\n' +
+                          'ProfileId = ' + UserInfo.getProfileId() + '\n' +
+                          'Message = ' + msg + '\n' + 
+                          'Exception Stack Trace = ' + ex.getStackTraceString() + '\n';    
 
-        if (ex != null) {
-            message += 'Exception Stack Trace = ' + ex.getStackTraceString() + '\n';    
-        }
-        
         if (source != null) {
-            message += 'Source = '+ source + '\n';
+            textBody += 'Source = ' + source + '\n';
         }
         
         if (referenceId != null && referenceInfo != null) {
-            message += 'ReferenceId = ' + referenceId + '\n' +
-                       'ReferenceInfo = ' + referenceInfo + '\n';
+            textBody += 'ReferenceId = ' + referenceId + '\n' +
+                        'ReferenceInfo = ' + referenceInfo + '\n';
         }
 
         email.setToAddresses(address);
         
         email.setSubject(subject); 
-        email.setPlainTextBody(message);
+        email.setPlainTextBody(textBody);
         email.setSenderDisplayName('Logger');
         
         messaging.Email[] emails = new messaging.Email[]{email};
