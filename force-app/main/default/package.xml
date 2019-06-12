@@ -14,8 +14,12 @@
    <name>ApexClass</name>
  </types>
  <types>
-        <members>Error_logs__c</members>
-        <name>CustomObject</name>
-    </types>
+    <members>*</members>
+    <name>CustomObject</name>
+</types>
+<types>
+    <members>*</members>
+    <name>CustomField</name>
+</types>
  <version>44.0</version>
 </Package>
