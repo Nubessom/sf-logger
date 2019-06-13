@@ -26,7 +26,7 @@
     <members>Error_Handling_Configuration.Production</members>
     <members>Error_Handling_Configuration.Sandbox</members>
     <members>Error_Handling_Configuration.Test</members>
-    <name>CustomMetadata</name>
+    <name>Settings</name>
 </types>
 <types>
     <members>Error_logs__c.Exception_Stack_Trace__c</members>
