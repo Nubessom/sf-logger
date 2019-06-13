@@ -14,8 +14,9 @@
    <name>ApexClass</name>
  </types>
  <types>
-    <members>Error_logs__c</members>
-    <members>Error_Handling_Configuration__mdt</members>
+    <!-- members>Error_logs__c</members>
+    <members>Error_Handling_Configuration__mdt</members -->
+    <members>*</members>
     <name>CustomObject</name>
 </types>
 <!-- types>
