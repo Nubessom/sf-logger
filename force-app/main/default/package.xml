@@ -40,5 +40,5 @@
     <members>Error_Handling_Configuration__mdt.Logger__c</members>
     <name>CustomField</name>
 </types>
- <version>44.0</version>
+ <version>46.0</version>
 </Package>
