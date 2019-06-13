@@ -18,6 +18,7 @@
     <members>Error_Handling_Configuration__mdt</members>
     <name>CustomObject</name>
 </types>
+<types>
     <members>Error_logs__c.Exception_Stack_Trace__c</members>
     <members>Error_logs__c.Exception_Type__c</members>
     <members>Error_logs__c.Log_Type__c</members>
