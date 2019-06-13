@@ -18,7 +18,7 @@
             <value>
                 <fullName>Fine</fullName>
                 <default>false</default>
-                <label>Fine - Info, Warning, Error</label>
+                <label>Fine - Info,Warning,Error</label>
             </value>
             <value>
                 <fullName>Finest</fullName>

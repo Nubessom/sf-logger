@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Log_Level__c</field>
-        <value xsi:type="xsd:string">No Log - Nothing</value>
+        <value xsi:type="xsd:string"></value>
     </values>
     <values>
         <field>Logger__c</field>

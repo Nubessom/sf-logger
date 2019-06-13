@@ -4,7 +4,7 @@ global with sharing class DebugLogger extends Logger {
         super(metadata);
     }
     
-    public void debug(Exception ex, String source, Id referenceId, String referenceInfo, String msg){
+    public void debug(Exception ex, String source, String referenceId, String referenceInfo, String msg){
         
         if (logLevel == 'Info' || logLevel == 'Fine') {
             return;
@@ -15,7 +15,7 @@ global with sharing class DebugLogger extends Logger {
         printLogType('DEBUG');
     }
 
-    public void debug(Exception ex, Id referenceId, String referenceInfo, String msg){
+    public void debug(Exception ex, String referenceId, String referenceInfo, String msg){
         debug(ex, null, referenceId, referenceInfo, msg);
     }
 
@@ -27,11 +27,11 @@ global with sharing class DebugLogger extends Logger {
         debug(ex, null, null, null, msg);
     }
     
-    public void debug(String source, Id referenceId, String referenceInfo, String msg) {
+    public void debug(String source, String referenceId, String referenceInfo, String msg) {
         debug(null, source, referenceId, referenceInfo, msg);
     }
 
-    public void debug(Id ReferenceId, String ReferenceInfo, String msg) {
+    public void debug(String ReferenceId, String ReferenceInfo, String msg) {
 		debug(null, null, referenceId, referenceInfo, msg);        
     }
     
@@ -43,13 +43,13 @@ global with sharing class DebugLogger extends Logger {
         debug(null, null, null, null, msg);
     }
     
-    public void info(Exception ex, String source, Id referenceId, String referenceInfo, String msg){        
+    public void info(Exception ex, String source, String referenceId, String referenceInfo, String msg){        
         printLogType('INFO');
         printLog(ex, source, referenceId, referenceInfo, msg);
         printLogType('INFO');
     }
 
-    public void info(Exception ex, Id ReferenceId, String ReferenceInfo, String msg){
+    public void info(Exception ex, String ReferenceId, String ReferenceInfo, String msg){
         info(ex, null, referenceId, referenceInfo, msg);
     }
 
@@ -61,7 +61,7 @@ global with sharing class DebugLogger extends Logger {
         info(ex, null, null, null, msg);
     }
    	
-    public void info(String source, Id referenceId, String referenceInfo, String msg) {
+    public void info(String source, String referenceId, String referenceInfo, String msg) {
         info(null, source, referenceId, referenceInfo, msg);
     }
 
@@ -77,7 +77,7 @@ global with sharing class DebugLogger extends Logger {
         info(null, null, null, null, msg);
     }    
     
-    public void warning(Exception ex, String source, Id referenceId, String referenceInfo, String msg){
+    public void warning(Exception ex, String source, String referenceId, String referenceInfo, String msg){
         if (metadata.Log_Level__c == 'Info') {
             return;
         }
@@ -87,7 +87,7 @@ global with sharing class DebugLogger extends Logger {
         printLogType('WARNING');
     }
 
-    public void warning(Exception ex, Id referenceId, String referenceInfo, String msg){
+    public void warning(Exception ex, String referenceId, String referenceInfo, String msg){
         warning(ex, null, referenceId, referenceInfo, msg);
     }
 
@@ -99,7 +99,7 @@ global with sharing class DebugLogger extends Logger {
         warning(ex, null, null, null, msg);
     }
 
-    public void error(Exception ex, String source, Id referenceId, String referenceInfo, String msg){
+    public void error(Exception ex, String source, String referenceId, String referenceInfo, String msg){
         printLogType('ERROR');
         printLog(ex, source, referenceId, referenceInfo, msg);
         printLogType('ERROR');
@@ -109,7 +109,7 @@ global with sharing class DebugLogger extends Logger {
         }
     }
     
-    public void error(Exception ex, Id referenceId, String referenceInfo, String msg){
+    public void error(Exception ex, String referenceId, String referenceInfo, String msg){
         error(ex, null, referenceId, referenceInfo, msg);
     }
   
@@ -121,14 +121,15 @@ global with sharing class DebugLogger extends Logger {
         error(ex, null, null, null, msg);
     }
     
-    private void printLog(Exception ex, String source, Id referenceId, String referenceInfo, String msg) {
+    private void printLog(Exception ex, String source, String referenceId, String referenceInfo, String msg) {
         System.debug('Username = '+ UserInfo.getUserName());
         System.debug('RoleId = '+ UserInfo.getUserRoleId());
         System.debug('ProfileId = '+ UserInfo.getProfileId());
         System.debug('Message = '+ msg);
         
         if (ex != null) {
-        	System.debug('Exception Stack Trace = '+ ex.getStackTraceString());    
+        	System.debug('Exception Stack Trace = '+ ex.getStackTraceString());
+            System.debug('Exception Type = ' + ex.getTypeName());
         }
         
         if (source != null) {
