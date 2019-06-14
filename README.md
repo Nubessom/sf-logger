@@ -10,9 +10,9 @@ Receive notifications by email.
 
 # Installation
 
-<a href="https://githubsfdeploy.herokuapp.com/?ref=master">
+<a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
-       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/deploy.png">
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
 # How to use
