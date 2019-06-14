@@ -1,5 +1,8 @@
 # sf-logger #
-
+<a href="https://githubsfdeploy.herokuapp.com">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
 sf-logger is a tool for logging and debugging Apex classes. 
 Easy to use, sf-logger is avaible in two different instances: *DebugLogger* (writes logs to Debug Logs of your salesforce org) and *ApexObjectLogger* (writes logs into fields of custom SObject). 
 
@@ -10,10 +13,7 @@ Receive notifications by email.
 
 # Installation
 
-<a href="https://githubsfdeploy.herokuapp.com">
-  <img alt="Deploy to Salesforce"
-       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
-</a>
+
 
 # How to use
 
