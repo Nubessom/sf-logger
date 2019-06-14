@@ -28,18 +28,6 @@
     <members>Error_Handling_Configuration__mdt.Logger__c</members>
     <name>CustomField</name>
 </types>
-<types>
-   <members>ApexObjectLogger</members>
-   <members>ApexObjectLoggerTest</members>
-   <members>DebugLogger</members>
-   <members>DebugLoggerTest</members>
-   <members>ILogger</members>
-   <members>Logger</members>
-   <members>LoggerFactory</members>
-   <members>LoggerTestException</members>
-   <members>NoLogLogger</members>
-   <members>NoLogLoggerTest</members>
-   <name>ApexClass</name>
- </types>
+
  <version>44.0</version>
 </Package>
