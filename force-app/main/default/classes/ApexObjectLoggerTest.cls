@@ -1,6 +1,8 @@
 @isTest
 public class ApexObjectLoggerTest {
 
+    public class LoggerTestException extends Exception {}
+
     static Error_Handling_Configuration__mdt metadata = new Error_Handling_Configuration__mdt(Logger__c='Object Logger', 
                                                                                               Email_Address__c='arseniys@nubessom.com', 
                                                                                               Email_on_Error__c=true,
@@ -25,7 +27,11 @@ public class ApexObjectLoggerTest {
         log.debug('source', 'msg');
         log.debug('msg');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, Source__c FROM Error_Logs__c WHERE Log_Type__c = 'debug'];
+		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                       Source__c
+                                                FROM Error_Logs__c 
+                                                WHERE Log_Type__c = 'debug'];
+                                          
         System.assertEquals(8, errorLogs.size());
 
         delete errorLogs;
@@ -42,7 +48,10 @@ public class ApexObjectLoggerTest {
         
         log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, Source__c FROM Error_Logs__c WHERE Log_Type__c = 'debug'];
+        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                Source__c
+                                         FROM Error_Logs__c 
+                                         WHERE Log_Type__c = 'debug'];
         System.assertEquals(0, errorLogs.size());
 
         delete errorLogs;
@@ -58,7 +67,10 @@ public class ApexObjectLoggerTest {
         
         log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
 
-        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, Source__c FROM Error_Logs__c WHERE Log_Type__c = 'debug'];
+        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c,
+                                                Source__c 
+                                         FROM Error_Logs__c 
+                                         WHERE Log_Type__c = 'debug'];
         System.assertEquals(0, errorLogs.size());
 
         delete errorLogs;
@@ -80,7 +92,10 @@ public class ApexObjectLoggerTest {
         log.info('source', 'msg');
         log.info('msg');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, Source__c FROM Error_Logs__c WHERE Log_Type__c = 'info'];
+		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                        Source__c 
+                                                 FROM Error_Logs__c 
+                                                 WHERE Log_Type__c = 'info'];
         System.assertEquals(8, errorLogs.size());
 
         delete errorLogs;
@@ -99,7 +114,10 @@ public class ApexObjectLoggerTest {
         log.warning(ex, 'source', 'msg');
         log.warning(ex, 'msg');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, Source__c FROM Error_Logs__c WHERE Log_Type__c = 'warning'];
+		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                        Source__c 
+                                                 FROM Error_Logs__c 
+                                                 WHERE Log_Type__c = 'warning'];
         System.assertEquals(4, errorLogs.size());
 
         delete errorLogs;
@@ -115,7 +133,10 @@ public class ApexObjectLoggerTest {
         
         log.warning(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, Source__c FROM Error_Logs__c WHERE Log_Type__c = 'warning'];
+		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                        Source__c 
+                                                 FROM Error_Logs__c 
+                                                 WHERE Log_Type__c = 'warning']; 
         System.assertEquals(0, errorLogs.size());
 
         delete errorLogs;
@@ -134,7 +155,10 @@ public class ApexObjectLoggerTest {
         log.error(ex, 'source', 'msg');
         log.error(ex, 'msg');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, Source__c FROM Error_Logs__c WHERE Log_Type__c = 'error'];
+		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                        Source__c 
+                                                 FROM Error_Logs__c 
+                                                 WHERE Log_Type__c = 'error'];
         System.assertEquals(4, errorLogs.size());
 
         delete errorLogs;

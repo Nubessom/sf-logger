@@ -5,7 +5,7 @@ public class NoLogLoggerTest {
                                                                                               Email_Address__c='arseniys@nubessom.com', 
                                                                                               Email_on_Error__c=true, 
                                                                                               MasterLabel='Sandbox');
-    static Exception ex = new LoggerTestException();
+    static Exception ex = new ApexObjectLoggerTest.LoggerTestException();
     static NoLogLogger log = new NoLogLogger(metadata);
     
     @isTest static void assumeDebugWorks() {

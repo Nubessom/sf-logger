@@ -1,7 +1,7 @@
 @isTest
 public class DebugLoggerTest {
 
-    static Exception ex = new LoggerTestException();
+    static Exception ex = new ApexObjectLoggerTest.LoggerTestException();
     static DebugLogger log;
     
     static Error_Handling_Configuration__mdt metadata = new Error_Handling_Configuration__mdt(Logger__c='Object Logger', 

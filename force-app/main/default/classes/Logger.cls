@@ -12,7 +12,7 @@ public abstract class Logger implements ILogger {
         this.logLevel = metadata.Log_Level__c;
     }
 
-    public void sendEmail(Exception ex, String source, Id referenceId, String referenceInfo, String msg){
+    public void sendEmail(Exception ex, String source, String referenceId, String referenceInfo, String msg){
 
         messaging.SingleEmailMessage email = new messaging.SingleEmailMessage();
         string[] address = new string[]{metadata.Email_Address__c};
@@ -22,8 +22,11 @@ public abstract class Logger implements ILogger {
         String textBody = 'Username = ' + UserInfo.getUserName() + '\n' +
                           'RoleId = ' + UserInfo.getUserRoleId() + '\n' +
                           'ProfileId = ' + UserInfo.getProfileId() + '\n' +
-                          'Message = ' + msg + '\n' + 
-                          'Exception Stack Trace = ' + ex.getStackTraceString() + '\n';    
+                          'Message = ' + msg + '\n';
+
+        if (ex != null) {
+            textBody += 'Exception Stack Trace = ' + ex.getStackTraceString() + '\n';    
+        }
 
         if (source != null) {
             textBody += 'Source = ' + source + '\n';
