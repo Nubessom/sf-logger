@@ -12,7 +12,7 @@
     <name>CustomMetadata</name>
 </types>
 <types>
-    <members>objects.Error_logs__c.Exception_Stack_Trace__c</members>
+    <members>objects/Error_logs__c.Exception_Stack_Trace__c</members>
     <members>Error_logs__c.Exception_Type__c</members>
     <members>Error_logs__c.Log_Type__c</members>
     <members>Error_logs__c.Message__c</members>
