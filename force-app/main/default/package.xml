@@ -1,45 +1,66 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-<types>
-    <members>Error_logs__c</members>
-    <members>Error_Handling_Configuration__mdt</members>
-    <name>CustomObject</name>
-</types>
- <types>
+  <types>
+    <name>ApexClass</name>
+    <members>ApexObjectLogger</members>
+    <members>ApexObjectLoggerTest</members>
+    <members>DebugLogger</members>
+    <members>DebugLoggerTest</members>
+    <members>ILogger</members>
+    <members>Logger</members>
+    <members>LoggerFactory</members>
+    <members>LoggerTestException</members>
+    <members>NoLogLogger</members>
+    <members>NoLogLoggerTest</members>
+  </types>
+  <types>
+    <name>CustomMetadata</name>
     <members>Error_Handling_Configuration.Production</members>
     <members>Error_Handling_Configuration.Sandbox</members>
     <members>Error_Handling_Configuration.Test</members>
-    <name>CustomMetadata</name>
-</types>
-<types>
-    <members>Error_logs__c.Exception_Stack_Trace__c</members>
-    <members>Error_logs__c.Exception_Type__c</members>
-    <members>Error_logs__c.Log_Type__c</members>
-    <members>Error_logs__c.Message__c</members>
-    <members>Error_logs__c.ProfileId__c</members>
-    <members>Error_logs__c.Reference_Id__c</members>
-    <members>Error_logs__c.Reference_Info__c</members>
-    <members>Error_logs__c.RoleId__c</members>
-    <members>Error_logs__c.Source__c</members>
-    <members>Error_logs__c.Username__c</members>
+  </types>
+  <types>
+    <name>Layout</name>
+    <members>Error_Handling_Configuration__mdt-Error Handling Metadata Layout</members>
+    <members>Error_Logs__c-Error Logs Layout</members>
+  </types>
+  <types>
+    <name>CustomObject</name>
+    <members>Error_Handling_Configuration__mdt</members>
+    <members>Error_Logs__c</members>
+  </types>
+  <types>
+    <name>CustomField</name>
     <members>Error_Handling_Configuration__mdt.Email_Address__c</members>
     <members>Error_Handling_Configuration__mdt.Email_on_Error__c</members>
     <members>Error_Handling_Configuration__mdt.Log_Level__c</members>
     <members>Error_Handling_Configuration__mdt.Logger__c</members>
-    <name>CustomField</name>
-</types>
-<types>
-   <members>ApexObjectLogger</members>
-   <members>ApexObjectLoggerTest</members>
-   <members>DebugLogger</members>
-   <members>DebugLoggerTest</members>
-   <members>ILogger</members>
-   <members>Logger</members>
-   <members>LoggerFactory</members>
-   <members>LoggerTestException</members>
-   <members>NoLogLogger</members>
-   <members>NoLogLoggerTest</members>
-   <name>ApexClass</name>
- </types>
- <version>45.0</version>
+    <members>Error_Logs__c.Exception_Stack_Trace__c</members>
+    <members>Error_Logs__c.Exception_Type__c</members>
+    <members>Error_Logs__c.Log_Type__c</members>
+    <members>Error_Logs__c.Message__c</members>
+    <members>Error_Logs__c.ProfileId__c</members>
+    <members>Error_Logs__c.Reference_Id__c</members>
+    <members>Error_Logs__c.Reference_Info__c</members>
+    <members>Error_Logs__c.RoleId__c</members>
+    <members>Error_Logs__c.Source__c</members>
+    <members>Error_Logs__c.Username__c</members>
+  </types>
+  <types>
+    <name>ListView</name>
+    <members>Error_Logs__c.All</members>
+  </types>
+  <types>
+    <name>CustomObjectTranslation</name>
+    <members>Error_Handling_Configuration__mdt-en_US</members>
+  </types>
+  <types>
+    <name>PermissionSet</name>
+    <members>Debug_logger_permission</members>
+  </types>
+  <types>
+    <name>CustomTab</name>
+    <members>Error_Logs__c</members>
+  </types>
+  <version>45.0</version>
 </Package>
