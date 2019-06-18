@@ -10,50 +10,38 @@ public class NoLogLoggerTest {
     
     @isTest static void assumeDebugWorks() {
         
-        log.debug(ex, 'test', '0013F00000IRc4kQAD', 'test', 'test');
-        log.debug(ex, '0013F00000IRc4kQAD', 'test', 'test');
-        log.debug(ex, 'test', 'test');
-        log.debug(ex, 'test');
+        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.debug(ex);
                     
-        log.debug('test', '0013F00000IRc4kQAD', 'test', 'test');
-        log.debug('0013F00000IRc4kQAD', 'test', 'test');
-        log.debug('test', 'test');
-        log.debug('test');
+        log.debug('customMessage', 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.debug('customMessage');
 
         System.assert(true);    
     }
 
     @isTest static void assumeInfoWorks() {
         
-        log.info(ex, 'test', '0013F00000IRc4kQAD', 'test', 'test');
-        log.info(ex, '0013F00000IRc4kQAD', 'test', 'test');
-        log.info(ex, 'test', 'test');
-        log.info(ex, 'test');
+        log.info(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.info(ex);
 
-        log.info('test', '0013F00000IRc4kQAD', 'test', 'test');
-        log.info('0013F00000IRc4kQAD', 'test', 'test');
-        log.info('test', 'test');
-        log.info('test');        
+        log.info('customMessage', 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.info('customMessage');
         
         System.assert(true);
     }
 
     @isTest static void assumeWarningWorks() {
         
-        log.warning(ex, 'test', '0013F00000IRc4kQAD', 'test', 'test');
-        log.warning(ex, '0013F00000IRc4kQAD', 'test', 'test');
-        log.warning(ex, 'test', 'test');
-        log.warning(ex, 'test');
+        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.warning(ex);
         
         System.assert(true);
     }
     
     @isTest static void assumeErrorWorks() {
         
-        log.error(ex, 'test', '0013F00000IRc4kQAD', 'test', 'test');
-        log.error(ex, '0013F00000IRc4kQAD', 'test', 'test');
-        log.error(ex, 'test', 'test');
-        log.error(ex, 'test');
+        log.error(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.error(ex);
         
         System.assert(true);
     }   

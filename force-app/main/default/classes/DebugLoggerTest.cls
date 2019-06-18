@@ -9,29 +9,23 @@ public class DebugLoggerTest {
                                                                                               Email_on_Error__c=true,
                                                                                               MasterLabel='Sandbox');
     @isTest static void assumeDebugWorksOnFinestLogLevel() {       
-   
         metadata.Log_Level__c = 'Finest';
         log = new DebugLogger(metadata);
         
-        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug(ex, 'source', 'msg');
-        log.debug(ex, 'msg');
+        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo');
+        log.debug(ex);
         
-        log.debug('source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug('0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug('source', 'msg');
-        log.debug('msg');
+        log.debug('customMessage', 'source', '0013F00000IRc4kQAD', 'refInfo');
+        log.debug('customMessage');
 		
         System.assert(true);
     }
 
     @isTest static void assumeDebugDoesNotWorkOnFineLogLevel() {
-        
         metadata.Log_Level__c = 'Fine';
         log = new DebugLogger(metadata);
         
-        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');		
+        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo');		
         System.assert(true);
     }
 
@@ -39,22 +33,18 @@ public class DebugLoggerTest {
         metadata.Log_Level__c = 'Info';
         log = new DebugLogger(metadata);
         
-        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');		
+        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo');		
         System.assert(true);
     }
     
     @isTest static void assumeInfoWorks() {
         log = new DebugLogger(metadata);
         
-        log.info(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info(ex, 'source', 'msg');
-        log.info(ex, 'msg');
+        log.info(ex, 'source', '0013F00000IRc4kQAD', 'refInfo');
+        log.info(ex);
 
-        log.info('source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info('0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info('source', 'msg');
-        log.info('msg');
+        log.info('customMessage', 'source', '0013F00000IRc4kQAD', 'refInfo');
+        log.info('customMessage');
 
         System.assert(true);
     }
@@ -63,10 +53,8 @@ public class DebugLoggerTest {
         metadata.Log_Level__c = 'Finest';
         log = new DebugLogger(metadata);
       
-        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.warning(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.warning(ex, 'source', 'msg');
-        log.warning(ex, 'msg');
+        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'refInfo');
+        log.warning(ex);
 
 		System.assert(true);
     }
@@ -75,18 +63,16 @@ public class DebugLoggerTest {
         metadata.Log_Level__c = 'Info';
         log = new DebugLogger(metadata);
 
-        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
+        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'refInfo');
 		System.assert(true);
     }
     
     @isTest static void assumeErrorWorks() {
-        
+
         log = new DebugLogger(metadata);
         
-        log.error(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.error(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.error(ex, 'source', 'msg');
-        log.error(ex, 'msg');
+        log.error(ex, 'source', '0013F00000IRc4kQAD', 'refInfo');
+        log.error(ex);
 		
         System.assert(true);
     }

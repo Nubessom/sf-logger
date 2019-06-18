@@ -12,29 +12,33 @@ public abstract class Logger implements ILogger {
         this.logLevel = metadata.Log_Level__c;
     }
 
-    public void sendEmail(Exception ex, String source, String referenceId, String referenceInfo, String msg){
+    public void sendEmail(Exception ex, String source, String referenceId, String referenceInfo){
 
         messaging.SingleEmailMessage email = new messaging.SingleEmailMessage();
         string[] address = new string[]{metadata.Email_Address__c};
 
-        String subject =  'OrgName: ' + UserInfo.getOrganizationName() + ' OrgId: ' + UserInfo.getOrganizationId() + ' at ' + Datetime.now().format();
+        String subject =  'OrgName:  ' + UserInfo.getOrganizationName() + ' OrgId: ' + UserInfo.getOrganizationId() + ' at ' + Datetime.now().format();
 
-        String textBody = 'Username = ' + UserInfo.getUserName() + '\n' +
-                          'RoleId = ' + UserInfo.getUserRoleId() + '\n' +
-                          'ProfileId = ' + UserInfo.getProfileId() + '\n' +
-                          'Message = ' + msg + '\n';
-
-        if (ex != null) {
-            textBody += 'Exception Stack Trace = ' + ex.getStackTraceString() + '\n';    
-        }
+        String textBody = 'Username:  ' + UserInfo.getUserName() + '\n' +
+                          'RoleId:  ' + UserInfo.getUserRoleId() + '\n' +
+                          'ProfileId:  ' + UserInfo.getProfileId() + '\n';
 
         if (source != null) {
-            textBody += 'Source = ' + source + '\n';
+            textBody += 'Source:  ' + source + '\n';
         }
         
-        if (referenceId != null && referenceInfo != null) {
-            textBody += 'ReferenceId = ' + referenceId + '\n' +
-                        'ReferenceInfo = ' + referenceInfo + '\n';
+        if (referenceId != null) {
+            textBody += 'ReferenceId:  ' + referenceId + '\n';
+        }
+
+        if (referenceInfo != null) {
+            textBody += 'ReferenceInfo:  ' + referenceInfo + '\n';
+        }
+
+        if (ex != null) {
+            textBody += 'Exception Type:  ' + ex.getTypeName() + '\n';
+            textBody += 'Exception Message:  ' + ex.getMessage() + '\n'; 
+            textBody += 'Exception Stack Trace:  ' + ex.getStackTraceString() + '\n';    
         }
 
         email.setToAddresses(address);

@@ -4,141 +4,106 @@ global with sharing class DebugLogger extends Logger {
         super(metadata);
     }
     
-    public void debug(Exception ex, String source, String referenceId, String referenceInfo, String msg){
+    public void debug(Exception ex, String source, String referenceId, String referenceInfo){
         
-        if (logLevel == 'Info' || logLevel == 'Fine') {
+        if (logLevel != 'Finest') {
             return;
         }
 
         printLogType('DEBUG');
-        printLog(ex, source, referenceId, referenceInfo, msg);
+        printLog(ex, source, referenceId, referenceInfo, null);
         printLogType('DEBUG');
     }
 
-    public void debug(Exception ex, String referenceId, String referenceInfo, String msg){
-        debug(ex, null, referenceId, referenceInfo, msg);
+    public void debug(Exception ex){
+        debug(ex, null, null, null);
     }
+    
+    public void debug(String customMessage, String source, String referenceId, String referenceInfo) {
+        if (logLevel != 'Finest') {
+            return;
+        }
 
-    public void debug(Exception ex, String source, String msg){
-        debug(ex, source, null, null, msg);
+        printLogType('DEBUG');
+        printLog(null, source, referenceId, referenceInfo, customMessage);
+        printLogType('DEBUG');
     }
     
-    public void debug(Exception ex, String msg){
-        debug(ex, null, null, null, msg);
+    public void debug(String customMessage) {
+        debug(customMessage, null, null, null);
     }
     
-    public void debug(String source, String referenceId, String referenceInfo, String msg) {
-        debug(null, source, referenceId, referenceInfo, msg);
-    }
-
-    public void debug(String ReferenceId, String ReferenceInfo, String msg) {
-		debug(null, null, referenceId, referenceInfo, msg);        
-    }
-    
-    public void debug(String source, String msg) {
-        debug(null, source, null, null, msg);
-    }
-    
-    public void debug(String msg) {
-        debug(null, null, null, null, msg);
-    }
-    
-    public void info(Exception ex, String source, String referenceId, String referenceInfo, String msg){        
+    public void info(Exception ex, String source, String referenceId, String referenceInfo){        
         printLogType('INFO');
-        printLog(ex, source, referenceId, referenceInfo, msg);
+        printLog(ex, source, referenceId, referenceInfo, null);
         printLogType('INFO');
     }
-
-    public void info(Exception ex, String ReferenceId, String ReferenceInfo, String msg){
-        info(ex, null, referenceId, referenceInfo, msg);
-    }
-
-    public void info(Exception ex, String source, String msg){
-        info(ex, source, null, null, msg);
-    }
     
-    public void info(Exception ex, String msg){
-        info(ex, null, null, null, msg);
+    public void info(Exception ex){
+        info(ex, null, null, null);
     }
    	
-    public void info(String source, String referenceId, String referenceInfo, String msg) {
-        info(null, source, referenceId, referenceInfo, msg);
-    }
-
-    public void info(Id ReferenceId, String ReferenceInfo, String msg) {
-        info(null, null, referenceId, referenceInfo, msg);        
+    public void info(String customMessage, String source, String referenceId, String referenceInfo) {
+        printLogType('INFO');
+        printLog(null, source, referenceId, referenceInfo, customMessage);
+        printLogType('INFO');
     }
     
-    public void info(String source, String msg) {
-        info(null, source, null, null, msg);
-    }
-    
-    public void info(String msg) {
-        info(null, null, null, null, msg);
+    public void info(String customMessage) {
+        info(customMessage, null, null, null);
     }    
     
-    public void warning(Exception ex, String source, String referenceId, String referenceInfo, String msg){
+    public void warning(Exception ex, String source, String referenceId, String referenceInfo){
         if (metadata.Log_Level__c == 'Info') {
             return;
         }
         
         printLogType('WARNING');
-        printLog(ex, source, referenceId, referenceInfo, msg);
+        printLog(ex, source, referenceId, referenceInfo, null);
         printLogType('WARNING');
     }
-
-    public void warning(Exception ex, String referenceId, String referenceInfo, String msg){
-        warning(ex, null, referenceId, referenceInfo, msg);
-    }
-
-    public void warning(Exception ex, String source, String msg){
-        warning(ex, source, null, null, msg);
-    }
     
-    public void warning(Exception ex, String msg){
-        warning(ex, null, null, null, msg);
+    public void warning(Exception ex){
+        warning(ex, null, null, null);
     }
 
-    public void error(Exception ex, String source, String referenceId, String referenceInfo, String msg){
+    public void error(Exception ex, String source, String referenceId, String referenceInfo){
         printLogType('ERROR');
-        printLog(ex, source, referenceId, referenceInfo, msg);
+        printLog(ex, source, referenceId, referenceInfo, null);
         printLogType('ERROR');
         
         if (isSendEmail) {
-            sendEmail(ex, source, referenceId, referenceInfo, msg);
+            sendEmail(ex, source, referenceId, referenceInfo);
         }
     }
-    
-    public void error(Exception ex, String referenceId, String referenceInfo, String msg){
-        error(ex, null, referenceId, referenceInfo, msg);
-    }
-  
-    public void error(Exception ex, String source, String msg){
-        error(ex, source, null, null, msg);
-    }
-    
-    public void error(Exception ex, String msg){
-        error(ex, null, null, null, msg);
-    }
-    
-    private void printLog(Exception ex, String source, String referenceId, String referenceInfo, String msg) {
-        System.debug('Username = '+ UserInfo.getUserName());
-        System.debug('RoleId = '+ UserInfo.getUserRoleId());
-        System.debug('ProfileId = '+ UserInfo.getProfileId());
-        System.debug('Message = '+ msg);
         
-        if (ex != null) {
-        	System.debug('Exception Stack Trace = '+ ex.getStackTraceString());
-            System.debug('Exception Type = ' + ex.getTypeName());
-        }
-        
+    public void error(Exception ex){
+        error(ex, null, null, null);
+    }
+    
+    private void printLog(Exception ex, String source, String referenceId, String referenceInfo, String customMessage) {
+        System.debug('Username:  ' + UserInfo.getUserName());
+        System.debug('RoleId:  ' + UserInfo.getUserRoleId());
+        System.debug('ProfileId:  ' + UserInfo.getProfileId());
+
         if (source != null) {
-            System.debug('Source = '+ source);
+            System.debug('Source:  ' + source);
         }
         
-        if (referenceId != null && referenceInfo != null) {
-            System.debug('ReferenceId = '+ referenceId);
-            System.debug('ReferenceInfo = '+ referenceInfo);
+        if (referenceId != null) {
+            System.debug('ReferenceId:  ' + referenceId);
+        }
+
+        if (referenceInfo != null) {
+            System.debug('ReferenceInfo:  ' + referenceInfo);
+        }
+
+        if (ex != null) {
+        	System.debug('Exception Stack Trace:  ' + ex.getStackTraceString());
+            System.debug('Exception Type:  ' + ex.getTypeName());
+            System.debug('Exception Message:  ' + ex.getMessage());
+        } else if (customMessage != null) {
+            System.debug('Custom Message:  ' + customMessage);
         }
     }
     

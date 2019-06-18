@@ -11,52 +11,41 @@ public class ApexObjectLoggerTest {
     static Exception ex = new LoggerTestException();
         
     @isTest static void debugShouldWorkOnFinestLogLevel() {       
-   
         metadata.Log_Level__c = 'Finest';
         log = new ApexObjectLogger(metadata);
         
         Test.startTest();
+        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.debug(ex);
         
-        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug(ex, 'source', 'msg');
-        log.debug(ex, 'msg');
-        
-        log.debug('source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug('0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.debug('source', 'msg');
-        log.debug('msg');
-
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
-                                                       Source__c
-                                                FROM Error_Logs__c 
-                                                WHERE Log_Type__c = 'debug'];
-                                          
-        System.assertEquals(8, errorLogs.size());
-
-        delete errorLogs;
-        
-		Test.stopTest();		        
-    }
-
-    @isTest static void debugShouldNotWorkOnFineLogLevel() {
-        
-        metadata.Log_Level__c = 'Fine';
-        log = new ApexObjectLogger(metadata);
-        
-        Test.startTest();
-        
-        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
+        log.debug('customMessage', 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.debug('customMessage');
 
         List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
                                                 Source__c
                                          FROM Error_Logs__c 
                                          WHERE Log_Type__c = 'debug'];
-        System.assertEquals(0, errorLogs.size());
-
+                                          
+        System.assertEquals(4, errorLogs.size());
         delete errorLogs;
+        Test.stopTest();		        
+    }
+
+    @isTest static void debugShouldNotWorkOnFineLogLevel() {
+        metadata.Log_Level__c = 'Fine';
+        log = new ApexObjectLogger(metadata);
         
-		Test.stopTest();		        
+        Test.startTest();
+        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+
+        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                Source__c
+                                         FROM Error_Logs__c 
+                                         WHERE Log_Type__c = 'debug'];
+
+        System.assertEquals(0, errorLogs.size());
+        delete errorLogs;
+        Test.stopTest();		        
     }
 
     @isTest static void debugShouldNotWorkOnInfoLogLevel() {
@@ -64,65 +53,54 @@ public class ApexObjectLoggerTest {
         log = new ApexObjectLogger(metadata);
         
         Test.startTest();
-        
-        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
+        log.debug(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
 
         List<Error_Logs__c> errorLogs = [SELECT Log_Type__c,
                                                 Source__c 
                                          FROM Error_Logs__c 
                                          WHERE Log_Type__c = 'debug'];
-        System.assertEquals(0, errorLogs.size());
 
+        System.assertEquals(0, errorLogs.size());
         delete errorLogs;
-        
-		Test.stopTest();		        
+        Test.stopTest();		        
     }
     
     @isTest static void infoShouldWork() {
         log = new ApexObjectLogger(metadata);
         
         Test.startTest();
-        log.info(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info(ex, 'source', 'msg');
-        log.info(ex, 'msg');
+        log.info(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.info(ex);
 
-        log.info('source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info('0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.info('source', 'msg');
-        log.info('msg');
+        log.info('customMessage', 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.info('customMessage');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
-                                                        Source__c 
-                                                 FROM Error_Logs__c 
-                                                 WHERE Log_Type__c = 'info'];
-        System.assertEquals(8, errorLogs.size());
-
-        delete errorLogs;
+        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                Source__c 
+                                         FROM Error_Logs__c 
+                                         WHERE Log_Type__c = 'info'];
         
-		Test.stopTest();		        
+        System.assertEquals(4, errorLogs.size());
+        delete errorLogs;
+        Test.stopTest();		        
     }
-	
+    
     @isTest static void warningShouldWorkOnFinestLogLevel() {
         metadata.Log_Level__c = 'Finest';
         log = new ApexObjectLogger(metadata);
 
         Test.startTest();
-        
-        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.warning(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.warning(ex, 'source', 'msg');
-        log.warning(ex, 'msg');
+        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.warning(ex);
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
-                                                        Source__c 
-                                                 FROM Error_Logs__c 
-                                                 WHERE Log_Type__c = 'warning'];
-        System.assertEquals(4, errorLogs.size());
+        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                Source__c 
+                                         FROM Error_Logs__c 
+                                         WHERE Log_Type__c = 'warning'];
 
+        System.assertEquals(2, errorLogs.size());
         delete errorLogs;
-        
-		Test.stopTest();		        
+        Test.stopTest();		        
     }
     
     @isTest static void warningShouldNotWorkOnInfoLogLevel() {
@@ -130,39 +108,32 @@ public class ApexObjectLoggerTest {
         log = new ApexObjectLogger(metadata);
 
         Test.startTest();
-        
-        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
+        log.warning(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
-                                                        Source__c 
-                                                 FROM Error_Logs__c 
-                                                 WHERE Log_Type__c = 'warning']; 
+        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                Source__c 
+                                         FROM Error_Logs__c 
+                                         WHERE Log_Type__c = 'warning'];
+
         System.assertEquals(0, errorLogs.size());
-
         delete errorLogs;
-        
-		Test.stopTest();		        
+        Test.stopTest();		        
     }
     
     @isTest static void errorShouldWork() {
-        
         log = new ApexObjectLogger(metadata);
 
         Test.startTest();
-        
-        log.error(ex, 'source', '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.error(ex, '0013F00000IRc4kQAD', 'refInfo', 'msg');
-        log.error(ex, 'source', 'msg');
-        log.error(ex, 'msg');
+        log.error(ex, 'source', '0013F00000IRc4kQAD', 'referenceInfo');
+        log.error(ex);
 
-		List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
-                                                        Source__c 
-                                                 FROM Error_Logs__c 
-                                                 WHERE Log_Type__c = 'error'];
-        System.assertEquals(4, errorLogs.size());
-
-        delete errorLogs;
-        
-		Test.stopTest();		        
+        List<Error_Logs__c> errorLogs = [SELECT Log_Type__c, 
+                                                Source__c 
+                                         FROM Error_Logs__c 
+                                         WHERE Log_Type__c = 'error'];
+      
+        System.assertEquals(2, errorLogs.size());
+        delete errorLogs;        
+        Test.stopTest();		        
     }
 }
