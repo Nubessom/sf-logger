@@ -50,5 +50,9 @@
     <name>ListView</name>
     <members>Error_Logs__c.All</members>
   </types>
+  <types>
+     <members>Debug_logger_permission</members>
+     <name>PermissionSet</name>
+    </types> 
   <version>45.0</version>
 </Package>
