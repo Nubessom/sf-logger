@@ -51,10 +51,6 @@
     <members>Error_Logs__c.All</members>
   </types>
   <types>
-    <name>CustomObjectTranslation</name>
-    <members>Error_Handling_Configuration__mdt-en_US</members>
-  </types>
-  <types>
     <name>PermissionSet</name>
     <members>Debug_logger_permission</members>
   </types>
