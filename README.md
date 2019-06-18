@@ -92,20 +92,16 @@ Interface on which all logger instances are based.
 ___Methods___
 
 Each logger contains four types of methods, based on log type: debug, info, warning and error. 
-Each method reloaded eight times, based on parameters that need to be logged.
+Each method reloaded four times, based on parameters that need to be logged.
 
 For example:
 
 ```java
-void debug(Exception ex, String source, Id referenceId, String referenceInfo, String msg);
-void debug(Exception ex, String source, String msg);
-void debug(Exception ex, Id ReferenceId, String ReferenceInfo, String msg);
-void debug(Exception ex, String msg);
+void debug(Exception ex, String source, String referenceId, String referenceInfo);
+void debug(Exception ex);
 
-void debug(String source, Id referenceId, String referenceInfo, String msg);
-void debug(String source, String msg);
-void debug(Id ReferenceId, String ReferenceInfo, String msg);
-void debug(String msg);
+void debug(String customMessage, String source, String referenceId, String referenceInfo);
+void debug(String customMessage);
 ```
 ***
 ### Logger.cls ###
