@@ -222,10 +222,13 @@ __Reference_Id__c__
 
     Type: Text(18)
     
+    The related record id
 
 __Reference_Info__c__
 
     Type: Text(255)
+    
+    The related record info (e.g. Apex Batch Job Id, Contact etc)
 
 __RoleId__c__
 
@@ -237,21 +240,10 @@ __Source__c__
 
     Type: Text(255)
     
-    Source
+    Source related to the log, i.e. Class Name
 
 __Username__c__
     
     Type: Text(255)
     
     Current user's name
-
-
-
-
-
-
-
-
-
-
-
