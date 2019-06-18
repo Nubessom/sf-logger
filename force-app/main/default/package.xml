@@ -53,6 +53,10 @@
   <types>
      <members>Debug_logger_permission</members>
      <name>PermissionSet</name>
+  </types>
+  <types>
+    <name>CustomObjectTranslation</name>
+    <members>Error_Handling_Configuration__mdt-en_US</members>
   </types> 
   <types>
     <name>CustomTab</name>
