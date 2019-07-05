@@ -23,7 +23,7 @@ Get logger instance in the beginning of your class using LoggerFactory.cls, like
    private ILogger log = LoggerFactory.getInstance(); 
 ```
 
-Add logger's method calls where you need it in code using corresponding log type and use parameters based on what info you need to log. See ILogger.cls for parameters reference.
+Add logger's method calls where you need them in code using corresponding log type and use parameters, based on what info you need to log. See ILogger.cls for parameters reference.
 
 Example:
 
@@ -37,6 +37,9 @@ Example:
 ...
 
 ```
+## Warning!
+- ![#ff0000](https://placehold.it/12/ff0000?text=+) Do not use ApexObjectLogger calls in constructor. Salesforce doesn't allow DML inserts in constructor.
+
 
 # Error Handling Configurations
 You can setup Error Handling Configurations in your org in Custom Metadata Types section.
